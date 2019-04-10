@@ -48,7 +48,8 @@
 		参数			   箭头 				lambda主体
 ```
 
-举例:
+举例:  
+
 	|使用案例|Lambda示例|
 	|-----------|-------|  
 	|布尔表达式|(List<String> list) -> list.isEmpty()|
