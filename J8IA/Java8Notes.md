@@ -50,14 +50,14 @@
 
 举例:  
 
-	|使用案例				|Lambda示例														|
-	|-------------------|:-------------------------------------------------------------:|  
-	|布尔表达式			|(List<String> list) -> list.isEmpty()							|
-	|创建对象				|()->new Apple(10)												|
-	|消费一个对象			|(Apple a)->{ System.out.println(a.getWeight())}				|
-	|从一个对象中选择/抽取 |(String s) -> s.length()										|
-	|组合两个值			|(int a,int b) -> a * b 										|
-	|比较两个对象			|(Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight())|
+	 使用案例				|Lambda示例														
+	 ------------------ | ------------------------------------------------------------- 
+	 布尔表达式			|(List<String> list) -> list.isEmpty()							
+	 创建对象				|()->new Apple(10)												
+	 消费一个对象			|(Apple a)->{ System.out.println(a.getWeight())}				
+	 从一个对象中选择/抽取 |(String s) -> s.length()										
+	 组合两个值			|(int a,int b) -> a * b 										
+	 比较两个对象			|(Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight())
 
 * 什么是函数式接口？
 * 类型判断
