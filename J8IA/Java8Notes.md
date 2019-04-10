@@ -59,5 +59,12 @@
 	 组合两个值			|(int a,int b) -> a * b 										
 	 比较两个对象			|(Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight())
 
+
+	 | Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 * 什么是函数式接口？
 * 类型判断
