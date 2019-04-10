@@ -60,12 +60,5 @@
 比较两个对象			|(Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight())
  
 
- 
-| Tables        | Are           | 
-| ------------- |:-------------:|
-| col 3 is      | right-aligned | 
-| col 2 is      | centered      |  
-| zebra stripes | are neat      |  
-
 * 什么是函数式接口？
 * 类型判断
