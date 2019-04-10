@@ -30,23 +30,27 @@
 	inventory.sort((Apple a1,Apple a2)-> a1.getWeight().compareTo(a2.getWeight()));
 	```
 	2. 用Runnable执行代码块
-	```
+	```java
 	Thread t = new Thread(()->System.out.println("Hello World"));
 	```
-	3. Button button = new Button("Send");
+	3. 
+	```java
+	Button button = new Button("Send");
 	   button.setOnAction(new EventHandler<ActionEvent>(){
 	   		public void handle(ActionEvent event){
 	   			label.setText("Sent!");
 	   		}
 	   });
-* Lambda怎么用？
+	```
+* Lambda怎么用？  
+```java
 	(Apple a1,Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
 		参数			   箭头 				lambda主体
-  
+```
 
 举例:
 	|使用案例|Lambda示例|
-	|:-:|:-:|  
+	|-----------|-------|  
 	|布尔表达式|(List<String> list) -> list.isEmpty()|
 	|创建对象|()->new Apple(10)|
 	|消费一个对象|(Apple a)->{ System.out.println(a.getWeight())}|
