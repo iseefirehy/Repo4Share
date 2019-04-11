@@ -45,7 +45,7 @@
 * Lambda怎么用？  
 ```java
 	(Apple a1,Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
-		参数			   箭头 				lambda主体
+		参数        箭头 		lambda主体
 ```
 
 举例:  
