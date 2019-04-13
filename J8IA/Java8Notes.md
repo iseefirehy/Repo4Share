@@ -60,5 +60,65 @@
 比较两个对象			|(Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight())
  
 
-* 什么是函数式接口？
+* 什么是函数式编程？  
+	> 函数式编程是一种抽象程度很高的编程范式(结构化编程)，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数只要输入是确定的，输出就是确定的。
+	
+	> Lambda表达式实现了函数式编程，实际上就是匿名函数。Lambba表达式可以拥有替换广泛使用的内部匿名类实现回调(callback)功能，用于事件响应。 
+	
+	>Lambda表达式实现了函数式编程，能够让开发者将程序代码如同数据一样使用。方法可以被当作参数传递到其他方法内，如同对象实例或数。
+
+* 函数式接口是什么?
+ 
+>只定义一个抽象方法的,但是可以有多个非抽象方法的接口。
+
+* 函数式接口的用法 
+	1. 函数式接口的抽象方法的签名基本上就是Lambada表达式的签名。
+	2. 用 ’@FunctionalInterface‘标注用于表示该接口会设计成一个函数式接口. 
+	3. **Sample**：
+		
+		1.定义
+		
+		```java
+		@FunctionalInterface
+		interface GreetingService 
+		{
+    		void sayMessage(String message);
+		}
+		``` 
+		2. 应用
+		
+		```java  
+		GreetingService greetService1 = message -> System.out.println("Hello " + message);
+
+		```
+		[详细链接，内置接口列表](http://www.runoob.com/java/java8-functional-interfaces.html) 
+	4. IntPredicate函数式接口：保证输入和输出的时候都是原始类型避免自动装箱的操作
+	5. 任何函数接口都不允许抛出受检异常(checked exception).
+	[为什么这么说？](http://www.runoob.com/java/java8-functional-interfaces.html)
+		* 定义一个自己的函数式接口，并声明受检异常
+		* 把Lambda包在一个try/catch块中
 * 类型判断
+
+
+
+### Appendix
+
+* 中间操作:  
+  
+操作|返回类型|操作参数|函数描述符 
+:-: | :-: | :-: | :-: | :-:
+filter| Stream< T > | Predicate< T > | T -> boolean| 
+limit | Stream< T > |  | |  
+sorted | Stream< T > | Comparator< T > | ( T,T ) -> int|  
+distinct | Stream< T > |  | |  
+map | Stream< T > | Function< T , R > | T -> R|  
+
+
+* 终端操作
+
+操作|目的
+:-: | :-: 
+forEach|消费流中的每个元素并对其应用Lamda.这一操作返回void
+count|返回流中元素个数.这一操作返回long
+collect|把流规约成一个集合，比如List,Map甚至是Integer.
+
