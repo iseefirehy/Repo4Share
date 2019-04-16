@@ -228,17 +228,6 @@
 
 ### Appendix
 
-* 中间操作:  
-  
-操作|返回类型|操作参数|函数描述符 
-:-: | :-: | :-: | :-: | :-:
-filter| Stream< T > | Predicate< T > | T -> boolean| 
-limit | Stream< T > |  | |  
-sorted | Stream< T > | Comparator< T > | ( T,T ) -> int|  
-distinct | Stream< T > |  | |  
-map | Stream< T > | Function< T , R > | T -> R|  
-
-
 * 终端操作
 
 操作|目的
