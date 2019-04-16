@@ -97,9 +97,134 @@
 	[为什么这么说？](http://www.runoob.com/java/java8-functional-interfaces.html)
 		* 定义一个自己的函数式接口，并声明受检异常
 		* 把Lambda包在一个try/catch块中
-* 类型判断
+
+* 类型检查 
+
+> Lambda的类型是从使用Lambda的上下文推断出来的。上下文中（比如，接受它传递的方法的参数，或接受它的值得局部变量）中Lambda表达式需要的类型称为**_目标类型_**。
 
 
+* 流(stream)介绍
+	> 流是一系列数据项，不是一种数据结构，它允许你以声明性的方式处理数据集合。暂且可以理解为一种遍历数据集的高级迭代器。官方定义是从支持数据处理操作的源生成的元素序列。流可以进行相关的算法和计算，只是它并没有显示地表现，而是在内部进行隐式地操作。
+	
+	* 有关流的名词 
+		 * 源。流会使用一个提供数据的源，如集合，数组或输入/输出资源。有序集合生成流时会顺序不变。
+		 * 数据处理操作-类似数据库CRUD，以及函数式编程语言中的常用操作。filter,map,reduce,find,match,sort.
+		 * 流水线 很多操作本身会返回一个流。这样多个操作可以链接起来，形成一个大的流水线。
+		 	
+	* 流的特点
+		1. 只能遍历一次。遍历完之后，我们就说这个流被消费掉了。
+		
+		```java
+		List<String> title = Arrays.asList("Java8","In","Action");
+		Stream<String> s = title.stream();
+		s.forEach(System.out::println);
+		s.forEach(System.out::println);//流已经被操作或关闭。
+		```
+		
+		2. 采用内部迭代方式。
+		Stream库使用内部迭代。帮使用者完成了迭代，并且把得到的流值用在了某个地方。
+		
+		for-each循环外部迭代/显示迭代
+		```java 
+		List<String> names = new ArrayList<>();
+		for(Dish d: menu){
+			names.add
+		}
+		```
+		
+		用背后的迭代器做背后迭代/显示迭代
+		
+		```java
+		List<String> names = new ArrayList<>();
+		Iterator<String> iterator = menu.iterator();
+		while(iterator.hasNext()){
+			Dish d = iterator.next();
+			names.add(d.getName());
+		}
+		```
+		
+		流/内部迭代
+		
+		```java
+		List<String> names = menu.stream().map(Dish::getName).collect(toList());
+		```
+* 流的使用
+	* 筛选  
+
+	
+		```java
+		filter
+		List<Dish> vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 
+		检查菜肴是否适合素食者。
+		```
+	* 去重	
+	
+		```java
+		distinct
+		List<Integer> numbers = Arrays.asList(1,2,1,3,3,2,4);
+		numbers.stream().filter(i -> i % 2 ==0).distinct().forEach(System.out::println);
+		
+		```
+	* 切片	 
+
+	```java
+	
+	List<Dish> dishes = menu.stream().filter(d -> d.getCalories() > 300).limit(3).collect(toList());
+	
+	  符合filter内条件的头三个元素
+	```
+	
+		
+	* 跳过元素 
+	
+	```java	
+	List<Dish> dishes = menu.stream().(d->d.getCalories() > 300).skip(2).collect(toList()); 
+	
+	返回一个扔掉了前n个元素的流。如果流中元素不足n个，则返回一个空流。limit(n)和skip(n)是互补的
+
+	```	 
+	
+	* 映射
+	
+	```java
+	map方法会接受一个函数作为参数。这个函数会被应用到每个元素上，并将其映射成一个新的元素(创建新版本)
+	
+	List<String> dishNames = menu.stream().map(Dish::getName).collect(toList());
+	List<String> words = Arrays.asList("Java 8", "Lambdas", "In", "Action");
+	List<Integer> wordLengths = words.stream().map(String::length).collect(toList());
+	List<Integer> dishNameLengths = menu.stream().map(Dish::getName).map(String::length).collect(toList());
+	```
+	
+	```java
+	流的扁平化
+	List<String> uniqueCharacters = word.stream().map(w->w.split("")).flatMap(Arrays::stream).distinct().collect(Collectors.toList());
+	```
+	
+	* 查找和匹配
+		
+		* 匹配
+		
+		```java
+			匹配一个元素
+			boolean flag = menu.stream().anyMatch(Dish::isVegetarian);
+		```
+		
+		```java
+			匹配所有元素
+			boolean isHealthy = menu.stream().allMatch(d -> d.getCalories() < 1000);
+		```
+		
+		```java
+			没有任何匹配
+			boolean isHealthy = menu.stream().noneMatch(d -> d.getCalories() >= 1000);
+		```
+		
+		短路操作， && 和 || 运算符在流中的版本。
+	
+	
+	
+	
+		
 
 ### Appendix
 
