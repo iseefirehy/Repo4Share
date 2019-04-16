@@ -1,5 +1,4 @@
 ## JAVA8 学习笔记 :computer::computer::computer::computer::computer:
-[toc]
 ### Part1  
 * 什么是Lambda表达式?
 > 简洁地表示可传递的匿名函数的一种方式：无名称，有参数列表，函数主体，返回类型，可能还有一个可以抛出的异常列表。
@@ -222,7 +221,51 @@
 		
 		短路操作， && 和 || 运算符在流中的版本。
 	
+	* 查找
 	
+		```java
+		findAny()方法将返回当前流中任意元素。
+		Optional<Dish> dish = menu.stream().filter(Dish::isVegetarian).findAny();
+		
+		```
+	
+		```java
+		查找按逻辑排序的第一个元素
+		List<Integer> someNumbers = Arrays.asList*(1,2,3,4,5);
+		Optional<Integer> firstSquareDivisibleByThree = someNumbers.stream().map(x->x * x).filter(x->x % 3 == 0).findFirst();
+		```
+		
+	* 归约
+		> 把一个流中的元素组合起来，使用reduce操作来表达更复杂的查询。
+	
+		* 元素求和
+			
+			**Java8之前**
+			
+			```java
+			int sum = 0;
+			for(int x:numbers){
+				sum += x;
+			}
+			```
+			
+			**Java8之后** 
+			
+			```java
+				int sum = numbers.stream().reduce(0,(a.b)-> a + b);
+			```
+			reduce接受两个参数，一个初始值，0，一个 BinaryOperator<T>来讲两个元素结合起来产生一个新值。
+			
+			```java
+				int product = numbers.stream().reduce((a,b)->a * b);
+			```
+			
+			重载变体，不接受初始值，但是会返回一个Optional对象
+			
+			```java
+				Optional<Integer> sum = numbers.stream().reduce((a,b)->(a + b));
+			```
+			
 	
 	
 		
@@ -236,4 +279,25 @@
 forEach|消费流中的每个元素并对其应用Lamda.这一操作返回void
 count|返回流中元素个数.这一操作返回long
 collect|把流规约成一个集合，比如List,Map甚至是Integer.
+
+
+
+操作|类型|返回类型|使用的类型/函数式接口|函数描述符
+:-: | :-: | :-: | :-:|:-:
+filter|中间|Stream<T>|Predictate<T>| T -> boolean
+distinct|中间（有状态，无界）|Stream<T>|| 
+skip|中间(有状态，有界)|Stream<T>|long| 
+limit|中间（有状态，有界）|Stream<T>|long| T -> boolean	
+map|中间|Stream<R>|Function<T，R>| T -> R	
+flatMap|中间|Stream<R>|Function<T,Stream<R>>| T -> Stream<R>	
+sorted|中间(有状态，无界）|Stream<T>|Comparator<T>| （T,T） -> int	
+anyMatch|终端|boolean|Predictate<T>| T -> boolean	
+noneMatch|终端|boolean|Predictate<T>| T -> boolean	
+allMatch|终端|boolean|Predictate<T>| T -> boolean	
+findAny|终端|Optional<T>|| 
+findFirst|终端|Optional<T>|| 
+forEach|终端|void|Consumer<T>| T -> void
+collect|终端|R|Collector<T,A,R>| 
+reduce|终端(有状态，有界)|Optional<T>|BinaryOperator<T>| (T,T)->T
+count|终端|long|| 	
 
