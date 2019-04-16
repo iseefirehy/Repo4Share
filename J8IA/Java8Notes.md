@@ -1,4 +1,5 @@
 ## JAVA8 学习笔记 :computer::computer::computer::computer::computer:
+[toc]
 ### Part1  
 * 什么是Lambda表达式?
 > 简洁地表示可传递的匿名函数的一种方式：无名称，有参数列表，函数主体，返回类型，可能还有一个可以抛出的异常列表。
